@@ -45,7 +45,7 @@
   {% if form.errors %}
     <p style="color: red">ユーザー名とパスワードが一致しません。</P>
   {% endif %}
-  <!-- ログインのフォームを配置-->
+  <!-- ログインのフォームを配置 -->
   <form method="post">
     {% csrf_token %}
     <!-- Boostrapのロゴを表示 -->
@@ -68,9 +68,9 @@
 
     <imput class="w-100 btn btn-lg btn-primary" type="submit" "ログイン">
     <br><br>
-    <p><a href="#">パスワードを忘れましたか？</a></p>
-    <!-- ログイン直後のリダイレクト先（トップページ）のURLパターンを設定-->
-    <input type="hidden" name="next" value="{% url 'photo:index' %}"
+    <p><a href="{% url 'password_reset' %}">パスワードを忘れましたか？</a></p>
+    <!-- ログイン直後のリダイレクト先（トップページ）のURLパターンを設定 -->
+    <input type="hidden" name="next" value="{% url 'photo:index' %}">
   </form>
 </main>    
 </body>
