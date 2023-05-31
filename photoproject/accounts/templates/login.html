@@ -41,30 +41,37 @@
   <body class="text-center">
     
 <main class="form-signin">
-  <form>
-    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+  <!-- ユーザー名とパスワードが一致しない場合のメッセージ -->
+  {% if form.errors %}
+    <p style="color: red">ユーザー名とパスワードが一致しません。</P>
+  {% endif %}
+  <!-- ログインのフォームを配置-->
+  <form method="post">
+    {% csrf_token %}
+    <!-- Boostrapのロゴを表示 -->
+    <!-- 「Static/img/boostrap-logo.svg」の読み込み -->
+    <img class="mb-4" src={% static "img/boostrap-logo.svg" %}
+      alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
+    <!-- Usernameの<input>タグを出力 -->
+    <!-- name属性の値はLoginViewで定義されているフィールド名username -->
+    <input type="text" name="username" id="id_username" maxlangth="150" 
+      autocapitaliza="none" autocomplete="username" class="form-control"
+      placeholder="ユーザー名" requied autofocus>
+    <label for="Password" class="visually-hidden">
+      Password</label>
+    <!-- passwordの<input>タグを出力-->
+    <!-- name属性の値はLoginViewで定義されているフィールド名password -->
+    <imput type="password" name="password" id="id_password" autocomplete="current-password"
+      class="form-control" placeholder="パスワード" required autofocus>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    <imput class="w-100 btn btn-lg btn-primary" type="submit" "ログイン">
+    <br><br>
+    <p><a href="#">パスワードを忘れましたか？</a></p>
+    <!-- ログイン直後のリダイレクト先（トップページ）のURLパターンを設定-->
+    <input type="hidden" name="next" value="{% url 'photo:index' %}"
   </form>
-</main>
-
-
-    
-  </body>
+</main>    
+</body>
 </html>

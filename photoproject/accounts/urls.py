@@ -1,6 +1,9 @@
 from django.urls import path
 # viewsモジュールをインポート
 from.import views
+# viewsをインポートしてauth_viewという名前で利用する
+from django.contrib.auth import views as auth_viewss
+
 # URLパターンを逆引きできるように名前をつける
 app_name = 'accounts'
 
@@ -8,10 +11,38 @@ app_name = 'accounts'
 urlpatterns = [
     # サインアップページのビューの呼び出し
     # 「http(s)://<ホスト名>/signup/」へのアクセスに対して、
-    # viewモジュールをインスタンス化する
+    # viewsモジュールのSignUpViewを
+    # インスタンス化する
+    path('signup/',
+         views.SignUpView.as_view(),
+         name='signup'),
+
+    # サインアップ完了ページのビュー呼び出し
+    # 「http(s)://<ホスト名>/signup_success/」へのアクセスに対して、
+    # ViewsモジュールのSignUpSuccessViewをインスタンス化する
     path('signup_success/',
          views.SignUpSuccessView.as_view(),
          name='signup_success'),
+         
+    # ログインページの表示
+    # 「http(s)://<ホスト名>/signup/」へのアクセスに対して、
+    # django.contrib.auth.views.LoginViewをインスタンス化して
+    # ログインページを表示する
+    path('login/',
+         # ログイン用のテンプレート(フォーム)をレンダリング
+         auth_views.LoginView.as_view(template_name='login.html'),
+         name='login'
+         ),
+
+    # ログアウト実行
+    #「http(S)://<ホスト名>/logout/」へのアクセスに対して、
+    # django.contrib.auth.views.logputViewをインスタンス化して
+    # ログアウトさせる
+    path('logout/',
+         auth_views.LogoutView.as_view(template_name='logout.html'),
+         name='logout'
+         ),
+
 ]
 
 
