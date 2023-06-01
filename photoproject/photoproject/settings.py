@@ -37,10 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # photoアプリを追加する
-    'photo.apps.AccountConfig',
-    # accountsアプリを追加する
-    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -103,9 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Userモデルの代わりにCustomUserモデルを使用する
-AUTH_USER_MODEL = 'accounts.CustomUser'
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -128,14 +121,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# メール送信のためのクラスを設定
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# メールサーバーへの接続設定
-DEFAULT_FROM_EMAIL = 'xxxxxx@gmail.com'  # メールの送信元のアドレスを入力
-EMAIL_HOST = 'smtp.gmail.com'            # GmailのSMPTサーバー　　　
-EMAIL_PORT = 587                         # SMPTサーバーのポート番号
-EMAIL_HOST_USER = 'xxxxxx@gmail.com'     # Gmailのアドレスを入力
-EMAIL_HOST_PASSWORD = 'xxxxxxxxxxxxxxxx' # Gmailのアプリ用パスワードを入力
-EMAIL_USE_TLS = True # SMTP サーバと通信する際に TLS (セキュア) 接続を使う
